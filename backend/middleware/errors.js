@@ -15,14 +15,26 @@ export const errors = (err, req, res, next) => {
         )
     }
     if (process.env.NODE_ENV === "PRODUCTION") {
-        const  error = { ...err }
-        err.message = err.message
+        const error = { ...err }
+        error.message = err.message
+
+        //wrong mongoose object ID error
+        if (err.name === 'CastError') {
+            const message = `Resources not found . Invalid : ${err.path}`
+            error = new ErrorHandler(message, 400)
+        }
+
+        //handle mongoose validation error 
+        if (err.name === 'ValidationError') {
+            const message = Object.values(err.errors).map(val => val.message)
+            error = new ErrorHandler(message, 400)
+        }
 
         res.status(error.statusCode).json(
             {
                 success: false,
                 message: error.message || 'Internal Server Error',
- 
+
             }
         )
     }
