@@ -24,11 +24,15 @@ export const newProduct = async (req, res, next) => {
 
 
 //to get all the products
-export const getProducts = (req, res, next) => {
+export const getProducts = async (req, res, next) => {
+
+    const products = await Product.find()
+
     res.status(200).json(
         {
             success: true,
-            message: 'this router handle all the product logic and it works fine'
+            count: products.length,
+            products
         }
     )
 }
