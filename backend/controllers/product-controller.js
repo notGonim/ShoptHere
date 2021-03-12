@@ -71,4 +71,23 @@ export const updateProductById = async (req, res, next) => {
     )
 }
 
+//to delete a single product by its id -> /api/admin/product/:id
+export const deleteProductById = async (req, res, next) => {
 
+    const product = await Product.findById(req.params.id)
+    if (!product) {
+        return res.status(404).json(
+            {
+                success: false,
+                message: 'Product not Found'
+            }
+        )
+    }
+    await product.remove()
+    res.status(200).json(
+        {
+            success: true,
+            message: 'Product is Deleted'
+        }
+    )
+}
