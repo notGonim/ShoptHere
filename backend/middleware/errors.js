@@ -7,7 +7,7 @@ export const errors = (err, req, res, next) => {
     res.status(err.statusCode).json(
         {
             success: false,
-            error: err
+            error: err.stack
         }
     )
 }
