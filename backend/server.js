@@ -18,6 +18,14 @@ connectDB()
 
 
 //make server run on port 5000
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`server is running on : ${port} in development `)
+})
+
+
+//handle the unhandled promise rejections 
+process.on('unhandledRejection', err => {
+    server.close(() => {
+        process.exit(1)
+    })
 })
