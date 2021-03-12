@@ -7,6 +7,12 @@ import { seedProducts } from './utils/seeder.js'
 //add the port that server will run on which is going to be 5000
 const port = process.env.PORT || 5000
 
+//handle uncaught exceptions 
+process.on('uncaughtException',err=>{
+    process.exit(1)
+})
+
+
 
 //setting up config file 
 dotEnv.config({ path: './config/config.env' })
