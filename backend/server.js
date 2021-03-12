@@ -1,6 +1,7 @@
 import { app } from './app.js'
 import dotEnv from 'dotenv'
 import { connectDB } from './config/db.js'
+import { seedProducts } from './utils/seeder.js'
 
 
 //add the port that server will run on which is going to be 5000
@@ -13,6 +14,7 @@ dotEnv.config({ path: './config/config.env' })
 
 // connecting to the database
 connectDB()
+
 
 
 //make server run on port 5000

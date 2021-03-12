@@ -7,7 +7,8 @@
   "scripts": {
     "start": "nodemon server.js",
     "dev" :"SET NODE_ENV=DEVELOPMENT& nodemon server.js",
-    "prod":"SET NODE_ENV=PRODUCTION& nodemon server.js"
+    "prod":"SET NODE_ENV=PRODUCTION& nodemon server.js",
+    "seeder":"node backend/utils/seeder.js"
   },
   "author": "gonim",
   "license": "ISC",

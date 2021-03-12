@@ -37,7 +37,7 @@ const productSchema = new mongoose.Schema(
             }
         ],
         category: {
-            type: Number,
+            type: String,
             required: [true, 'Please Select Category for the product'],
             enum: {
                 values: [
@@ -57,7 +57,7 @@ const productSchema = new mongoose.Schema(
             }
         },
         seller: {
-            type: Number,
+            type: String,
             required: [true, 'Please the product Seller'],
         },
         stock: {
