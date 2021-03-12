@@ -1,10 +1,12 @@
 //this file is to handel all the login for the product router
 import { asyncError } from "../middleware/catchAsyncErrors.js"
 import Product from "../models/product-model.js"
+import { ApiFeatures } from "../utils/apiFeattures.js"
 import { ErrorHandler } from "../utils/errorHandler.js"
 
 //to create a new product  -> /api/v1/admin/product/new  
 export const newProduct = asyncError(async (req, res, next) => {
+
 
     const product = await Product.create(req.body)
     res.status(201).json(
@@ -15,10 +17,11 @@ export const newProduct = asyncError(async (req, res, next) => {
     )
 })
 
-//to get all the products from -> /api/v1/product 
+//to get all the products from -> /api/v1/product?[word]
 export const getProducts = asyncError(async (req, res, next) => {
 
-    const products = await Product.find()
+    const apiFeatures = new ApiFeatures(Product.find(), req.query).search()
+    const products = await apiFeatures.query    
     res.status(200).json(
         {
             success: true,
