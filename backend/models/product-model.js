@@ -81,7 +81,7 @@ const productSchema = new mongoose.Schema(
                     required: true
                 },
                 comment: {
-                    typeLString,
+                    type: String,
                     required: true
                 }
             }
