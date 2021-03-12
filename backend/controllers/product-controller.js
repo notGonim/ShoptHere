@@ -23,7 +23,7 @@ export const newProduct = async (req, res, next) => {
 }
 
 
-//to get all the products
+//to get all the products from -> /api/v1/product 
 export const getProducts = async (req, res, next) => {
 
     const products = await Product.find()
@@ -36,3 +36,34 @@ export const getProducts = async (req, res, next) => {
         }
     )
 }
+
+
+
+
+
+//to get a single product -> /api/v1/product/:id
+
+export const getProductById = async (req, res, next) => {
+
+    const product = await Product.findById(req.params.id)
+
+    if (!product) {
+        return res.status(404).json(
+            {
+                success: false,
+                message: 'Product not Found'
+            }
+        )
+    }
+
+    res.status(200).json(
+        {
+            success: true,
+            product
+        }
+    )
+}
+
+
+
+
