@@ -24,11 +24,9 @@ const userSchema = new mongoose.Schema({
     avatar: {
         public_id: {
             type: String,
-            required: true
         },
         url: {
             type: String,
-            required: true
         }
     },
     role: {
@@ -43,21 +41,24 @@ const userSchema = new mongoose.Schema({
     resetPasswordExpire: Date
 
 })
-
 //Encrypting user`s password before saving user 
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) {
         next()
     }
     this.password = await bcrypt.hash(this.password, 10)
+
 })
+
 
 //return JWT 
 userSchema.methods.getJwtToken = function () {
     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.EXPIRE_IN
     })
+
 }
+
 
 
 const User = mongoose.model('Users', userSchema)

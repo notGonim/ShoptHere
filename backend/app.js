@@ -9,8 +9,8 @@ export const app = express()
 app.use(express.json())
 
 //to handle all the routes that related to products
-app.use('/api/v1', ProductRouter)
-app.use('api/v1',UserRouter)
+app.use('/api', ProductRouter)
+app.use('/api',UserRouter)
 
 //middleware to handle all errors 
 app.use(errors)
