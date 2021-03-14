@@ -12,7 +12,8 @@ export const registerUser = asyncError(async (req, res, next) => {
             name,
             email,
             password,
-            
+
         }
     )
+    
 })
