@@ -35,5 +35,17 @@ export const userLogin = asyncError(async (req, res, next) => {
         return next(asyncError('User not found Please enter Valid Email and Password', 401))
     }
     const token = user.getJwtToken()
-    sendToken(user,200,res)
+    sendToken(user, 200, res)
+})
+
+//logout user 
+export const userLogout = asyncError(async (req, res, next) => {
+    res.cookie('token', null, {
+        expires: new Date(Date.now()),
+        httpOnly: true
+    })
+    res.status(200).json({
+        success: true,
+        message: 'Logged Out'
+    })
 })

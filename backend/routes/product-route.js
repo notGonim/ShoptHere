@@ -9,8 +9,8 @@ export const ProductRouter = express.Router()
 
 
 
-ProductRouter.get('/products', isUserAuthenticated,getProducts)
+ProductRouter.get('/products', getProducts)
 ProductRouter.get('/product/:id', getProductById)
-ProductRouter.post('/admin/product/new', newProduct)
-ProductRouter.put('/admin/product/:id', updateProductById)
-ProductRouter.delete('/admin/product/:id', deleteProductById)
+ProductRouter.post('/admin/product/new', isUserAuthenticated, newProduct)
+ProductRouter.put('/admin/product/:id', isUserAuthenticated, updateProductById)
+ProductRouter.delete('/admin/product/:id', isUserAuthenticated, deleteProductById)
