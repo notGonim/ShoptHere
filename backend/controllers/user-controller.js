@@ -1,6 +1,7 @@
 import { asyncError } from "../middleware/catchAsyncErrors.js"
 import User from "../models/user-modek.js"
 import { ErrorHandler } from "../utils/errorHandler.js"
+import { sendToken } from "../utils/jwtTokens.js"
 
 
 //register a user => api/v1/\\register
@@ -34,8 +35,5 @@ export const userLogin = asyncError(async (req, res, next) => {
         return next(asyncError('User not found Please enter Valid Email and Password', 401))
     }
     const token = user.getJwtToken()
-    res.status(201).json({
-        success: true,
-        token
-    })
+    sendToken(user,200,res)
 })
