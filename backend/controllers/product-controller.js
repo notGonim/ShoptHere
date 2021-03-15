@@ -7,7 +7,7 @@ import { ErrorHandler } from "../utils/errorHandler.js"
 //to create a new product  -> /api/v1/admin/product/new  
 export const newProduct = asyncError(async (req, res, next) => {
 
-
+    req.body.user = req.user.id
     const product = await Product.create(req.body)
     res.status(201).json(
         {
@@ -21,7 +21,7 @@ export const newProduct = asyncError(async (req, res, next) => {
 export const getProducts = asyncError(async (req, res, next) => {
 
     const resPerPage = 4
-    const productCount=await Product.countDocuments()
+    const productCount = await Product.countDocuments()
     const apiFeatures = new ApiFeatures(Product.find(), req.query).search().filter().pagination(resPerPage)
     const products = await apiFeatures.query
     res.status(200).json(
