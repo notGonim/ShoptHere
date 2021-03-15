@@ -8,7 +8,32 @@ export const registerUser = asyncError(async (req, res, next) => {
 
     const user = await User.create(req.body)
 
-    const token =  user.getJwtToken()
+    const token = user.getJwtToken()
+    res.status(201).json({
+        success: true,
+        token
+    })
+})
+
+//login user => api/login
+export const userLogin = asyncError(async (req, res, next) => {
+
+    const { email, password } = req.body
+    //check if email & password is entered by user 
+    if (!email || !password) {
+        return next(asyncError('Please Enter email and password'))
+    }
+    //finding user in Databases
+    const user = await User.findOne({ email }).select('+password')
+    if (!user) {
+        return next(asyncError('User not found Please enter Valid Email and Password', 401))
+    }
+    //check if password is correct or not 
+    const isPasswordMatch = await user.matchPassword(password)
+    if (!isPasswordMatch) {
+        return next(asyncError('User not found Please enter Valid Email and Password', 401))
+    }
+    const token = user.getJwtToken()
     res.status(201).json({
         success: true,
         token
