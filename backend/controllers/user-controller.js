@@ -91,6 +91,32 @@ export const updateProfile = asyncError(async (req, res, next) => {
     })
 })
 
+//get all users   => api/admin/users 
+export const getAllUsers =asyncError(async(req,res,next)=>{
+    const users =await User.find()
+
+    res.status(200).json({
+        success: true,
+        users
+    })
+})
+
+
+// Get user details   =>   /api/admin/user/:id
+export const  getUserDetails = asyncError(async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+        return next(new ErrorHandler(`User does not found with id: ${req.params.id}`))
+    }
+
+    res.status(200).json({
+        success: true,
+        user
+    })
+})
+
+
 /*
 
 //forget password
