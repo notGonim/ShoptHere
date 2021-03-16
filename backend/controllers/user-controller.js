@@ -72,8 +72,23 @@ export const updatePassword = asyncError(async (req, res, next) => {
     user.password = req.body, password
     await user.save()
     sendToken(user, 200, res)
-    
+})
 
+//update user profile   api/me/update
+export const updateProfile = asyncError(async (req, res, next) => {
+    const newUserData = {
+        name: req.body.name,
+        email: req.body.email
+    }
+    //to update the avatar 
+    const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+    })
+    res.status(200).json({
+        success: true
+    })
 })
 
 /*
