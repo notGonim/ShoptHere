@@ -49,6 +49,17 @@ export const userLogout = asyncError(async (req, res, next) => {
         message: 'Logged Out'
     })
 })
+//getting currently logged in user details  -> api/me
+export const getUserProfile = asyncError(async (req, res, next) => {
+    const user = await User.findById(req.user.id)
+    res.status(200).json({
+        success: true,
+        user
+    })
+})
+
+
+
 /*
 
 //forget password
