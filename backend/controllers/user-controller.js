@@ -117,6 +117,43 @@ export const  getUserDetails = asyncError(async (req, res, next) => {
 })
 
 
+// Update user profile   =>   /api/v1/admin/user/:id
+export const updateUser = asyncError(async (req, res, next) => {
+    const newUserData = {
+        name: req.body.name,
+        email: req.body.email,
+        role: req.body.role
+    }
+
+    const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+    })
+
+    res.status(200).json({
+        success: true
+    })
+})
+
+// Delete user   =>   /api/admin/user/:id
+export const deleteUser = asyncError(async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+        return next(new ErrorHandler(`User does not found with id: ${req.params.id}`))
+    }
+
+    // Remove avatar from cloudinary todo 
+     
+    await user.remove();
+
+    res.status(200).json({
+        success: true,
+    })
+})
+
+
 /*
 
 //forget password
