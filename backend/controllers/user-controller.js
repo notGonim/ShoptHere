@@ -1,3 +1,4 @@
+import { errorMonitor } from "node:events"
 import { asyncError } from "../middleware/catchAsyncErrors.js"
 import User from "../models/user-modek.js"
 import { ErrorHandler } from "../utils/errorHandler.js"
@@ -58,7 +59,22 @@ export const getUserProfile = asyncError(async (req, res, next) => {
     })
 })
 
+//update the password  => api/password/update
 
+export const updatePassword = asyncError(async (req, res, next) => {
+    const user = await User.findById(req.user.id).select('+password')
+    //check previous user password 
+
+    const isMatch = await user.comparePassword(req.body.oldPassword)
+    if (!isMatch)
+        return next(new ErrorHandler('Your Old Password Is not Correct  ', 400))
+
+    user.password = req.body, password
+    await user.save()
+    sendToken(user, 200, res)
+    
+
+})
 
 /*
 
