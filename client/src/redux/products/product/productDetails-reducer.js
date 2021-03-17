@@ -12,7 +12,7 @@ const ProductDetailsReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: true,
             };
-        case 'PRODUCT_DETAILS_SUCCESS':
+        case '  ':
             return {
                 loading: false,
                 product: action.payload
