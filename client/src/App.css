@@ -461,25 +461,26 @@ footer {
 .update-btn {
   background-color: #fa9c23;
   border-color: #fa9c23;
-  color: white;
+  color: white !important;
 }
 
 .update-btn:hover {
-  color: white;
+  color: white !important;
 }
 
 /* Pagination */
 .page-item.active .page-link {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #fa9c23 !important;
+  border-color: #fa9c23 !important;
+  color: white !important;
 }
 
 .page-link {
-  color: #fa9c23;
+  color: #fa9c23 !important;
 }
 
 .page-link:hover {
-  color: #fa9c23;
+  color: #fa9c23 !important;
 }
 
 /* Admin Sidebar */
