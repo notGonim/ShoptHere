@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../redux/products/product-actions'
+import { Loader } from './layouts/Loader'
 import { MetaData } from './layouts/MetaData'
 import { Product } from './product/Product'
 
@@ -20,7 +21,7 @@ export const Home = () => {
 
   return (
     <>
-      {loading ? <h1>Loading...</h1> : (
+      {loading ? <Loader /> : (
         <div classNameName="container container-fluid">
           <MetaData title={"Buy Best Products Online"} />
           <h1 id="products_heading">Latest Products</h1>
