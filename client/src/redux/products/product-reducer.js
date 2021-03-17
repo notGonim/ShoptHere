@@ -16,7 +16,7 @@ const ProductReducer = (state = INITIAL_STATE, action) => {
             return {
                 loading: false,
                 products: action.payload.products,
-                productsCount: action.payload.productsCount
+                productsCount: action.payload.productCount
             };
         case 'ALL_PRODUCTS_FAIL':
             return {
