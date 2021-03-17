@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { getProducts } from '../redux/products/product-actions'
 import { MetaData } from './layouts/MetaData'
 
+
+
 export const Home = () => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getProducts())
+  }, [dispatch])
+
+
+
   return (
     <div classNameName="container container-fluid">
       <MetaData title={"Buy Best Products Online"} />
