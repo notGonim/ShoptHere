@@ -19,18 +19,22 @@ export const Home = () => {
 
 
   return (
-    <div classNameName="container container-fluid">
-      <MetaData title={"Buy Best Products Online"} />
-      <h1 id="products_heading">Latest Products</h1>
+    <>
+      {loading ? <h1>Loading...</h1> : (
+        <div classNameName="container container-fluid">
+          <MetaData title={"Buy Best Products Online"} />
+          <h1 id="products_heading">Latest Products</h1>
 
-      <section id="products" className="container mt-5">
-        <div className="row">
-          {products && products.map(product => (
-            <Product key={product._id} product={product} />
-          ))}
+          <section id="products" className="container mt-5">
+            <div className="row">
+              {products && products.map(product => (
+                <Product key={product._id} product={product} />
+              ))}
 
+            </div>
+          </section>
         </div>
-      </section>
-    </div>
+      )}
+    </>
   )
 }
