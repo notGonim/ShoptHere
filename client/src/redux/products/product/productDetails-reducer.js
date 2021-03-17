@@ -1,6 +1,6 @@
 
 const INITIAL_STATE = {
-    product: []
+    product: {}
 }
 
 const ProductDetailsReducer = (state = INITIAL_STATE, action) => {
@@ -12,14 +12,14 @@ const ProductDetailsReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: true,
             };
-        case '  ':
+        case 'PRODUCT_DETAILS_SUCCESS':
             return {
                 loading: false,
                 product: action.payload
             };
         case 'PRODUCT_DETAILS_FAIL':
             return {
-             ...state,
+                ...state,
                 error: action.payload
             };
         case 'CLEAR_ERRORS':

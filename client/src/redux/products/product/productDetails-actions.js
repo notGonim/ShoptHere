@@ -8,10 +8,11 @@ export const getProductDetails = (id) => async (dispatch) => {
         dispatch({
             type: "PRODUCT_DETAILS_REQUEST",
         })
-        const { data } = await axios.get(`/api/products/${id}`)
+        const { data } = await axios.get(`/api/product/${id}`)
+        console.log(data)
         dispatch({
             type: "PRODUCT_DETAILS_SUCCESS",
-            payload: data
+            payload: data.product
         })
     } catch (err) {
         dispatch({
