@@ -8,12 +8,14 @@ import { Product } from './product/Product'
 import Pagination from "react-js-pagination";
 
 
-export const Home = () => {
+export const Home = ({match}) => {
 
   const dispatch = useDispatch()
   const { loading, products, error, productsCount, resPerPage } = useSelector(state => state.products)
   const alert = useAlert();
   const [currentPage, setCurrPage] = useState(1)
+
+  const keyword = match.params.keyword
 
   const setCurrentPageNo = (pageNo) => {
     setCurrPage(pageNo)
@@ -23,7 +25,7 @@ export const Home = () => {
     if (error) {
       return alert.error(error)
     }
-    dispatch(getProducts(currentPage))
+    dispatch(getProducts(keyword,currentPage))
   }, [dispatch, error, alert, currentPage])
 
 
