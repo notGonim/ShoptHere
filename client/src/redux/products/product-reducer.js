@@ -26,7 +26,7 @@ const ProductReducer = (state = INITIAL_STATE, action) => {
         case 'CLEAR_ERRORS':
             return {
                 ...state,
-                error: nul
+                error: null
             };
         default:
             return state;
