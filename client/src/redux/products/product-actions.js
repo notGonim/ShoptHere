@@ -24,3 +24,11 @@ export const getProducts = () => async (dispatch) => {
 
 
 //clearing errors 
+
+export const clearErrors = () => async (dispatch) => {
+    dispatch({
+        type: CLEAR_ERRORS,
+    })
+
+
+}
