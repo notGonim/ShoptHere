@@ -86,7 +86,7 @@ export const allOrder = asyncError(async (req, res, next) => {
 
 
 
-// Update / Process order - ADMIN  =>   /api/v1/admin/order/:id
+// Update / Process order - ADMIN  =>   /api/admin/order/:id
 export const  updateOrder = asyncError(async (req, res, next) => {
     const order = await Order.findById(req.params.id)
 
@@ -110,3 +110,11 @@ export const  updateOrder = asyncError(async (req, res, next) => {
 
 
 
+//to update the stock  
+async function updateStock(id, quantity) {
+    const product = await Product.findById(id);
+
+    product.stock = product.stock - quantity;
+
+    await product.save({ validateBeforeSave: false })
+}
