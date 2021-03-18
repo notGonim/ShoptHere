@@ -87,7 +87,7 @@ export const allOrder = asyncError(async (req, res, next) => {
 
 
 // Update / Process order - ADMIN  =>   /api/admin/order/:id
-export const  updateOrder = asyncError(async (req, res, next) => {
+export const updateOrder = asyncError(async (req, res, next) => {
     const order = await Order.findById(req.params.id)
 
     if (order.orderStatus === 'Delivered') {
