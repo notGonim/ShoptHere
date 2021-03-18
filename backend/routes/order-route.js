@@ -6,4 +6,4 @@ import { isUserAuthenticated, authorizeRoles } from '../middleware/auth-routes.j
 export const OrderRouter = express.Router()
 
 
-OrderRouter.post('/order/new',newOrder)
+OrderRouter.post('/order/new', isUserAuthenticated, newOrder)
