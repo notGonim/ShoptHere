@@ -64,3 +64,28 @@ export const myOrder = asyncError(async (req, res, next) => {
     })
 })
 
+
+
+// get all orders    -> api/admin/orders 
+export const allOrder = asyncError(async (req, res, next) => {
+
+    const orders = await Order.find()
+
+    let totalAmount = 0
+    orders.forEach(order => {
+        totalAmount += order.totalPrice
+    })
+
+    res.status(200).json({
+        success: true,
+        totalAmount,
+        orders
+    })
+})
+
+
+
+
+
+
+
