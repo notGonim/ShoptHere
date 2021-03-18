@@ -1,5 +1,5 @@
 import express from 'express'
-import { newOrder, getSingleOrder, myOrder, allOrder, updateOrder deleteOrder } from '../controllers/order-controler.js'
+import { newOrder, getSingleOrder, myOrder, allOrder, updateOrder, deleteOrder } from '../controllers/order-controler.js'
 import { isUserAuthenticated, authorizeRoles } from '../middleware/auth-routes.js'
 
 
