@@ -2,16 +2,16 @@ import axios from 'axios'
 
 
 // getting all products from the   ---> api/products
-export const getProducts = (keyword = '', currPage = 1, price, category) => async (dispatch) => {
+export const getProducts = (keyword = '', currPage = 1, price, category,rating=0) => async (dispatch) => {
 
     try {
         dispatch({
             type: "ALL_PRODUCTS_REQUEST",
         })
-        let link = `/api/products?keyword=${keyword}&page=${currPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+        let link = `/api/products?keyword=${keyword}&page=${currPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&rating[gte]=${rating}`
 
         if (category) {
-            let link = `/api/products?keyword=${keyword}&page=${currPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}`         
+            let link = `/api/products?keyword=${keyword}&page=${currPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}&rating[gte]=${rating}`         
         }
 
         const { data } = await axios.get(link)

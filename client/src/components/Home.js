@@ -26,6 +26,7 @@ export const Home = ({ match }) => {
   const keyword = match.params.keyword
 
   const [category, setCategory] = useState('')
+  const [rating, setRating] = useState(0)
 
   const categories = [
     'Electronics',
@@ -55,8 +56,8 @@ export const Home = ({ match }) => {
     if (error) {
       return alert.error(error)
     }
-    dispatch(getProducts(keyword, currentPage, price, category))
-  }, [dispatch, error, alert, currentPage, price])
+    dispatch(getProducts(keyword, currentPage, price, category, rating))
+  }, [dispatch, error, alert, currentPage, price, category, rating])
 
 
 
@@ -110,8 +111,45 @@ export const Home = ({ match }) => {
                           ))}
                         </ul>
                       </div>
+
+
+                      <hr className="my-3" />
+
+                      <div className="mt-5">
+                        <h4 className="mb-3">
+                          Ratings
+    </h4>
+
+                        <ul className="pl-0">
+                          {[5, 4, 3, 2, 1].map(star => (
+                            <li
+                              style={{
+                                cursor: 'pointer',
+                                listStyleType: 'none'
+                              }}
+                              key={star}
+                              onClick={() => setRating(star)}
+                            >
+                              <div className="rating-outer">
+                                <div className="rating-inner"
+                                  style={{
+                                    width: `${star * 20}%`
+                                  }}
+                                >
+                                </div>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+
+
                     </div>
                   </div>
+
+
+
                   <div className="col-6  col-md-9">
                     <div className="row">
                       {products.map(product => (
