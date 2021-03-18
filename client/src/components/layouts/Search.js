@@ -9,6 +9,7 @@ export const Search = ({ history }) => {
 
         if (keyword.trim()) {
             history.push(`/search/${keyword}`)
+            setKeyword('')
         } else {
             history.push('/')
         }

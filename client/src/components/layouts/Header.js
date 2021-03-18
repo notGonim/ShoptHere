@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { Route } from 'react-router'
+import { Link } from 'react-router-dom'
 import '../../App.css'
 import logoImg from '../../images/shopit.png'
 import { Search } from './Search'
@@ -9,12 +10,14 @@ export const Header = () => {
             <nav class="navbar row">
                 <div class="col-12 col-md-3">
                     <div class="navbar-brand">
-                        <img src={logoImg} />
+                        <Link to='/' >
+                            <img src={logoImg} />
+                        </Link>
                     </div>
                 </div>
 
                 <div class="col-12 col-md-6 mt-2 mt-md-0">
-                    <Route render={({history}) => <Search history={history} />} />
+                    <Route render={({ history }) => <Search history={history} />} />
                 </div>
                 <div class="col-12 col-md-3 mt-4 mt-md-0 text-center">
                     <button class="btn" id="login_btn">Login</button>

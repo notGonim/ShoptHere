@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const Product = ({ product ,col}) => {
+export const Product = ({ product , col}) => {
     return (
         <div className={`col-sm-12 col-md-6 col-lg-${col} my-3 `}>
             <div className="card p-3 rounded">
