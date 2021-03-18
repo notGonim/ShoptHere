@@ -37,7 +37,6 @@ export const newOrder = asyncError(async (req, res, next) => {
 
 
 // get single order by its id   -> api/order/:id 
-
 export const getSingleOrder = asyncError(async (req, res, next) => {
 
     const order = await (await Order.findById(req.params.id)).populated('user', 'name email')
@@ -47,10 +46,21 @@ export const getSingleOrder = asyncError(async (req, res, next) => {
     }
 
     res.status(200).json({
-        success:true,
+        success: true,
         order
     })
 })
 
 
+
+// get logged in user  orders by its id   -> api/orders/me 
+export const myOrder = asyncError(async (req, res, next) => {
+
+    const orders = await Order.find({ user: req.user.id })
+
+    res.status(200).json({
+        success: true,
+        orders
+    })
+})
 
