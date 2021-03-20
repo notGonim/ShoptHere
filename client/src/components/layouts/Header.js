@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { Button, ButtonGroup, Dropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -9,6 +10,11 @@ export const Header = () => {
 
     const dispatch = useDispatch()
     const { user, loading } = useSelector(state => state.auth)
+
+
+    const logoutHandler = () => {
+
+    }
     return (
         <>
             <nav class="navbar row">
@@ -25,10 +31,31 @@ export const Header = () => {
                 </div>
                 <div class="col-12 col-md-3 mt-4 mt-md-0 text-center">
                     <Link to='/cart' style={{ textDecoration: 'none' }}>
-                        <span id="cart" class="ml-3">Cart</span>
-                        <span class="ml-1" id="cart_count">2</span>
+                        <span id="cart" class="ml-3 mr-2">Cart</span>
+                        <span class="ml-1 mr-3" id="cart_count">2</span>
                     </Link>
-                    <Link to="/login" class="btn" id="login_btn" >Login</Link>
+
+                    {user ? (
+                        <>
+
+                            <Dropdown as={ButtonGroup}>
+                                <Button variant="success">{user && user.name}</Button>
+
+                                <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
+
+                                <Dropdown.Menu>
+                                    {user && user.role === 'admin' && (
+                                        <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
+                                    )}
+                                    <Link className="dropdown-item" to="/orders/me">Orders</Link>
+                                    <Link className="dropdown-item" to="/me">Profile</Link>
+                                    <Link className="dropdown-item" to="/dashboard">Log Out</Link>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </>
+                    ) : !loading && <Link to="/login" className="btn ml-4" id="login_btn">Login</Link>}
+
+            
 
                 </div>
             </nav>
