@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { clearErrors, login } from '../../redux/user/user-actions'
 import { Loader } from '../layouts/Loader'
 
@@ -12,7 +13,6 @@ export const Login = ({ history }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
-    const alter = userAlter()
     const { isAuthenticated, error, loading } = useSelector(state => state.auth)
 
 
@@ -23,11 +23,10 @@ export const Login = ({ history }) => {
         }
 
         if (error) {
-            alter.error(error)
             dispatch(clearErrors())
         }
 
-    }, [dispatch, alter, history, isAuthenticated])
+    }, [dispatch, history, isAuthenticated])
 
     const submitHandler = e => {
         e.preventDefault();
