@@ -1,5 +1,6 @@
-import React from 'react'
-import { updatePassword } from '../../redux/user/user-actions'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearErrors, updatePassword } from '../../redux/user/user-actions'
 
 export const UpdatePassword = ({ history    }) => {
 
@@ -15,9 +16,7 @@ export const UpdatePassword = ({ history    }) => {
         }
 
         if (isUpdated) {
-
             history.push('/me')
-
             dispatch({
                 type: "UPDATE_PASSWORD_RESET"
             })
@@ -27,8 +26,8 @@ export const UpdatePassword = ({ history    }) => {
     //change the implementation 
     const submitHandler = e => {
         e.preventDefault();
-        const userData = { oldPassword, password }
-        dispatch(updatePassword(userData))
+     
+        dispatch(updatePassword({oldPassword, password }))
     }
 
 

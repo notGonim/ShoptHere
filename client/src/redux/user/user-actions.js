@@ -77,16 +77,15 @@ export const update = (userData) => async (dispatch) => {
     }
 }
 // update password func 
-export const updatePassword = (passwords) => async (dispatch) => {
+export const updatePassword = ({oldPassword, password }) => async (dispatch) => {
     try {
         dispatch({ type: "UPDATE_PASSWORD_REQUEST" })
-
         const config = {
             headers: {
                 'Content-Type': 'application/json'
             }
         }
-        const { data } = await axios.put('/api/password/update', passwords, config)
+        const { data } = await axios.put('/api/password/update', {oldPassword, password }, config)
         dispatch({
             type: "UPDATE_PASSWORD_SUCCESS",
             payload: data.success
