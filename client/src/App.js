@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { loadUser } from "./redux/user/user-actions";
 import { Profile } from "./components/user/Profile";
 import { ProtectedRoutes } from "./components/routes/ProtectedRoutes";
+import { UpdateProfile } from "./components/user/UpdateProfile";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
           <ProtectedRoutes path="/me" exact component={Profile} />
+          <ProtectedRoutes path="/me/update" exact component={UpdateProfile} />
 
         </div>
         <Footer />

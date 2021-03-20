@@ -65,7 +65,7 @@ export const update = (userData) => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         }
-        const { data } = await axios.post('/api/me/update', userData, config)
+        const { data } = await axios.put('/api/me/update', userData, config)
         console.log(data)
         dispatch({
             type: "UPDATE_PROFILE_SUCCESS",

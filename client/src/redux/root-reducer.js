@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
     products: ProductReducer,
     product: ProductDetailsReducer,
     auth: UserReducer,
-    profile:ProfileReducer
+    profile: ProfileReducer
 })
 
 
