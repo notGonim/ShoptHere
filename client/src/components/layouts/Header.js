@@ -5,6 +5,7 @@ import { Route } from 'react-router'
 import { Link } from 'react-router-dom'
 import '../../App.css'
 import logoImg from '../../images/shopit.png'
+import { logout } from '../../redux/user/user-actions'
 import { Search } from './Search'
 export const Header = () => {
 
@@ -13,6 +14,7 @@ export const Header = () => {
 
 
     const logoutHandler = () => {
+        dispatch(logout())
 
     }
     return (
@@ -49,13 +51,13 @@ export const Header = () => {
                                     )}
                                     <Link className="dropdown-item" to="/orders/me">Orders</Link>
                                     <Link className="dropdown-item" to="/me">Profile</Link>
-                                    <Link className="dropdown-item" to="/dashboard">Log Out</Link>
+                                    <Link className="dropdown-item" to="/" onClick={logoutHandler}>Log Out</Link>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </>
                     ) : !loading && <Link to="/login" className="btn ml-4" id="login_btn">Login</Link>}
 
-            
+
 
                 </div>
             </nav>
