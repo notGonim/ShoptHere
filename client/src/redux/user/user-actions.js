@@ -56,6 +56,28 @@ export const register = (userData) => async (dispatch) => {
 }
 
 
+// loaduser  func 
+export const loadUser = () => async (dispatch) => {
+    try {
+        dispatch({ type: "LOAD_USER_REQUEST" })
+
+
+        const { data } = await axios.get('/api/me')
+        dispatch({
+            type: "LOAD_USER_SUCCESS",
+            payload: data.user
+        })
+
+    } catch (err) {
+        console.log(err)
+        dispatch({
+            type: "LOAD_USER_FAIL",
+            payload: err.response.data.message
+        })
+    }
+}
+
+
 
 
 //clearing errors 

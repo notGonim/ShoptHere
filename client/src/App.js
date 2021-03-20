@@ -5,9 +5,17 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { ProductDetails } from "./components/product/ProductDetails/ProductDetails";
 import { Login } from "./components/user/Login";
 import { Register } from "./components/user/Register";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loadUser } from "./redux/user/user-actions";
 
 
 function App() {
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(loadUser())
+  })
   return (
     <Router >
       <div className="App">
