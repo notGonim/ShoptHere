@@ -55,6 +55,32 @@ export const register = (userData) => async (dispatch) => {
     }
 }
 
+// update func 
+export const update = (userData) => async (dispatch) => {
+    try {
+        dispatch({ type: "UPDATE_PROFILE_REQUEST" })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        const { data } = await axios.post('/api/me/update', userData, config)
+        console.log(data)
+        dispatch({
+            type: "UPDATE_PROFILE_SUCCESS",
+            payload: data.success
+        })
+
+    } catch (err) {
+        console.log(err)
+        dispatch({
+            type: "UPDATE_PROFILE_FAIL",
+            payload: err.response.data.message
+        })
+    }
+}
+
 
 // loaduser  func 
 export const loadUser = () => async (dispatch) => {
@@ -102,3 +128,5 @@ export const clearErrors = () => async (dispatch) => {
         type: "CLEAR_ERRORS",
     })
 }
+
+
