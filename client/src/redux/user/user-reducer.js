@@ -24,14 +24,27 @@ const UserReducer = (state = INITIAL_STATE, action) => {
                 isAuthenticated: true,
                 user: action.payload
             };
+        case 'LOGOUT_FAIL':
+            return {
+                ...state,
+                error: action.payload
+            };
         case 'LOGIN_FAIL':
         case 'REGISTER_FAIL':
+
             return {
                 ...state,
                 loading: false,
                 isAuthenticated: false,
                 user: null,
                 error: action.payload
+            };
+        case 'LOGOUT_SUCCESS':
+            return {
+                loading: false,
+                isAuthenticated: false,
+                user: null
+
             };
         case 'LOAD_USER_FAIL':
             return {
