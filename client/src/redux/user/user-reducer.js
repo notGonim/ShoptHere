@@ -64,4 +64,37 @@ const UserReducer = (state = INITIAL_STATE, action) => {
     }
 }
 
+export const ProfileReducer = (state = {}, action) => {
+
+    switch (action.type) {
+
+        case 'UPDATE_PROFILE_REQUEST':
+            return {
+                ...state,
+                loading: true
+            };
+        case 'UPDATE_PROFILE_SUCCESS':
+            return {
+                ...state,
+                loading: false,
+                isUpdated: action.payload
+            };
+        case 'UPDATE_PROFILE_FAIL':
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+        case 'UPDATE_PROFILE_RESET':
+            return {
+                ...state,
+                isUpdated: false
+            };
+        default:
+            return state;
+    }
+}
+
+
+
 export default UserReducer
