@@ -73,6 +73,7 @@ export const Home = ({ match }) => {
 
               {keyword ? (
                 <>
+
                   <div className="col-6 col-md-3 mt-5 mb-5">
                     <div className="px-5">
                       <Range
@@ -157,6 +158,8 @@ export const Home = ({ match }) => {
                       ))}
                     </div>
                   </div>
+
+
                 </>
               ) : (
                 products.map(product => (
