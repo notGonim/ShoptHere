@@ -17,7 +17,7 @@ const UserReducer = (state = INITIAL_STATE, action) => {
         case 'LOGIN_SUCCESS':
         case 'REGISTER_SUCCESS':
             return {
-                ...state,
+                ...state,   
                 loading: false,
                 isAuthenticated: true,
                 user: action.payload

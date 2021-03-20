@@ -1,19 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { register } from '../../redux/user/user-actions'
+import { clearErrors, register } from '../../redux/user/user-actions'
 
 export const Register = ({ history }) => {
 
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [name, setName] = useState('')
 
-    const [user, setUser] = useState({
-        name: '',
-        email: '',
-        password: '',
-    })
 
-    const { name, email, password } = user
     const [avatar, setAvatar] = useState('')
-    const [avatarPreview, setAvatarPreview] = useState('/images/logo192.png')
+    const [avatarPreview, setAvatarPreview] = useState('/images/default_avatar.jpg')
 
     const dispatch = useDispatch();
 
@@ -26,25 +23,39 @@ export const Register = ({ history }) => {
         }
 
         if (error) {
-            dispatch(clearErrors())
+            dispatch(clearErrors());
         }
 
-    }, [dispatch, history, isAuthenticated])
+    }, [dispatch, isAuthenticated, error, history])
 
-    const submitHandler = e => {
+    const submitHandler = (e) => {
         e.preventDefault();
-
-
-        const formData = new FormData()
-        formData.set('name', name)
-        formData.set('email', email)
-        formData.set('password', password)
-        formData.set('avatar', avatar)
-
-        dispatch(register(formData))
-
+        const userData = { name, email, password }
+        console.log(userData)
+        dispatch(register(userData))
     }
 
+    /*
+        const onChange = e => {
+            if (e.target.name === 'avatar') {
+    
+                const reader = new FileReader();
+    
+                reader.onload = () => {
+                    if (reader.readyState === 2) {
+                        setAvatarPreview(reader.result)
+                        setAvatar(reader.result)
+                    }
+                }
+    
+                reader.readAsDataURL(e.target.files[0])
+    
+            } else {
+                setUser({ ...user, [e.target.name]: e.target.value })
+            }
+        }
+    
+    */
     return (
         <>
             <div className="row wrapper">
@@ -60,7 +71,7 @@ export const Register = ({ history }) => {
                                 className="form-control"
                                 name='name'
                                 value={name}
-                                onChange={onChange}
+                                onChange={(e) => setName(e.target.value)}
                             />
                         </div>
 
@@ -72,7 +83,7 @@ export const Register = ({ history }) => {
                                 className="form-control"
                                 name='email'
                                 value={email}
-                                onChange={onChange}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
 
@@ -84,8 +95,7 @@ export const Register = ({ history }) => {
                                 className="form-control"
                                 name='password'
                                 value={password}
-                                onChange={onChange}
-                            />
+                                onChange={(e) => setPassword(e.target.value)} />
                         </div>
 
                         <div className='form-group'>
@@ -107,7 +117,6 @@ export const Register = ({ history }) => {
                                         className='custom-file-input'
                                         id='customFile'
                                         accept="iamges/*"
-                                        onChange={onChange}
                                     />
                                     <label className='custom-file-label' htmlFor='customFile'>
                                         Choose Avatar

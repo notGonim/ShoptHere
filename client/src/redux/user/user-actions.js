@@ -31,21 +31,23 @@ export const login = (email, password) => async (dispatch) => {
 // register func 
 export const register = (userData) => async (dispatch) => {
     try {
-
+        console.log(userData)
         dispatch({ type: "REGISTER_REQUEST" })
 
         const config = {
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'application/json'
             }
         }
         const { data } = await axios.post('/api/register', userData, config)
+        console.log(data)
         dispatch({
             type: "REGISTER_SUCCESS",
             payload: data.user
         })
 
     } catch (err) {
+        console.log(err)
         dispatch({
             type: "REGISTER_FAIL",
             payload: err.response.data.message
