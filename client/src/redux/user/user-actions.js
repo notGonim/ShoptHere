@@ -69,7 +69,6 @@ export const loadUser = () => async (dispatch) => {
         })
 
     } catch (err) {
-        console.log(err)
         dispatch({
             type: "LOAD_USER_FAIL",
             payload: err.response.data.message
@@ -78,6 +77,22 @@ export const loadUser = () => async (dispatch) => {
 }
 
 
+
+//handle user logout 
+export const logout = () => async (dispatch) => {
+    try {
+        await axios.get('/api/logout')
+        dispatch({
+            type: "LOGOUT_SUCCESS",
+        })
+
+    } catch (err) {
+        dispatch({
+            type: "LOGOUT_FAIL",
+            payload: err.response.data.message
+        })
+    }
+}
 
 
 //clearing errors 
