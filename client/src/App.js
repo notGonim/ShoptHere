@@ -11,6 +11,7 @@ import { loadUser } from "./redux/user/user-actions";
 import { Profile } from "./components/user/Profile";
 import { ProtectedRoutes } from "./components/routes/ProtectedRoutes";
 import { UpdateProfile } from "./components/user/UpdateProfile";
+import { UpdatePassword } from "./components/user/UpdatePassword";
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
           <Route path="/register" exact component={Register} />
           <ProtectedRoutes path="/me" exact component={Profile} />
           <ProtectedRoutes path="/me/update" exact component={UpdateProfile} />
-
+          <ProtectedRoutes path="/password/update" exact component={UpdatePassword} />
         </div>
         <Footer />
       </div>

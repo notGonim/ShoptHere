@@ -1,6 +1,7 @@
 import React from 'react'
+import { updatePassword } from '../../redux/user/user-actions'
 
-export const UpdatePassword = ({ history }) => {
+export const UpdatePassword = ({ history    }) => {
 
     const [oldPassword, setOldPassword] = useState('')
     const [password, setPassword] = useState('')
@@ -18,7 +19,7 @@ export const UpdatePassword = ({ history }) => {
             history.push('/me')
 
             dispatch({
-                type: "UPDATE_PROFILE_RESET"
+                type: "UPDATE_PASSWORD_RESET"
             })
         }
 
@@ -27,7 +28,7 @@ export const UpdatePassword = ({ history }) => {
     const submitHandler = e => {
         e.preventDefault();
         const userData = { oldPassword, password }
-        dispatch(update(userData))
+        dispatch(updatePassword(userData))
     }
 
 

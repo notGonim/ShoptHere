@@ -40,14 +40,12 @@ export const register = (userData) => async (dispatch) => {
             }
         }
         const { data } = await axios.post('/api/register', userData, config)
-        console.log(data)
         dispatch({
             type: "REGISTER_SUCCESS",
             payload: data.user
         })
 
     } catch (err) {
-        console.log(err)
         dispatch({
             type: "REGISTER_FAIL",
             payload: err.response.data.message
@@ -55,7 +53,7 @@ export const register = (userData) => async (dispatch) => {
     }
 }
 
-// update func 
+// update profile func 
 export const update = (userData) => async (dispatch) => {
     try {
         dispatch({ type: "UPDATE_PROFILE_REQUEST" })
@@ -66,16 +64,38 @@ export const update = (userData) => async (dispatch) => {
             }
         }
         const { data } = await axios.put('/api/me/update', userData, config)
-        console.log(data)
         dispatch({
             type: "UPDATE_PROFILE_SUCCESS",
             payload: data.success
         })
 
     } catch (err) {
-        console.log(err)
         dispatch({
             type: "UPDATE_PROFILE_FAIL",
+            payload: err.response.data.message
+        })
+    }
+}
+// update password func 
+export const updatePassword = (passwords) => async (dispatch) => {
+    try {
+        dispatch({ type: "UPDATE_PASSWORD_REQUEST" })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        const { data } = await axios.put('/api/password/update', passwords, config)
+        dispatch({
+            type: "UPDATE_PASSWORD_SUCCESS",
+            payload: data.success
+        })
+
+    } catch (err) {
+        console.log(err)
+        dispatch({
+            type: "UPDATE_PASSWORD_FAIL",
             payload: err.response.data.message
         })
     }
