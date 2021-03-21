@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        default: 'admin'
+        default: 'user'
     },
     createdAt: {
         type: Date,
@@ -42,7 +42,6 @@ const userSchema = new mongoose.Schema({
     },
     resetPasswordToken: String,
     resetPasswordExpire: Date
-
 })
 //Encrypting user`s password before saving user 
 userSchema.pre('save', async function (next) {
@@ -75,6 +74,9 @@ userSchema.methods.getResetPasswordToken = function () {
     //set token expire time 
     this.resetPasswordExpire = Date.now() + 30 * 60 * 1000
     return resetToken
+}
+userSchema.methods.comparePassword = async function (enteredPassword) {
+    return await bcrypt.compare(enteredPassword, this.password)
 }
 
 

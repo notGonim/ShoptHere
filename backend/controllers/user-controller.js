@@ -62,16 +62,17 @@ export const getUserProfile = asyncError(async (req, res, next) => {
 //update the password  => api/password/update
 
 export const updatePassword = asyncError(async (req, res, next) => {
-    const user = await User.findById(req.user.id).select('+password')
-    //check previous user password 
+    const user = await User.findById(req.user.id).select('+password')    //check previous user password 
 
-    const isMatch = await user.comparePassword(req.body.oldPassword)
-    if (!isMatch)
-        return next(new ErrorHandler('Your Old Password Is not Correct  ', 400))
+    const isMatched = await user.comparePassword(req.body.oldPassword)
+    if (!isMatched)
+        return next(new ErrorHandler('Your Old Password Is not Correct  '))
 
-    user.password = req.body, password
-    await user.save()
-    sendToken(user, 200, res)
+        user.password = req.body.password;
+        await user.save();
+    
+        sendToken(user, 200, res)
+    
 })
 
 //update user profile   api/me/update
