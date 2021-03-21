@@ -70,7 +70,7 @@ export const ProductDetails = ({ match }) => {
                             <div className="stockCounter d-inline">
                                 <span className="btn btn-danger minus" onClick={decreaseStock}>-</span>
 
-                                <input type="number" className="form-control count d-inline" readOnly />
+                                <input type="number" className="form-control count d-inline" value={quantity} readOnly />
 
                                 <span className="btn btn-primary plus" onClick={increaseStock} >+</span>
                             </div>
