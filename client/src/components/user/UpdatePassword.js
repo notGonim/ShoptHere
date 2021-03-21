@@ -27,7 +27,7 @@ export const UpdatePassword = ({ history    }) => {
     const submitHandler = e => {
         e.preventDefault();
      
-        dispatch(updatePassword({oldPassword, password }))
+        dispatch(updatePassword(oldPassword, password ))
     }
 
 

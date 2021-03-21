@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductDetails } from '../../../redux/products/product/productDetails-actions'
@@ -12,7 +12,7 @@ export const ProductDetails = ({ match }) => {
 
     const dispatch = useDispatch()
     const alert = useAlert();
-
+    const [quantity, setQuantity] = useState(1)
     const { loading, error, product } = useSelector(state => state.product)
     useEffect(() => {
         dispatch(getProductDetails(match.params.id))
@@ -23,6 +23,17 @@ export const ProductDetails = ({ match }) => {
 
     }, [dispatch, match.params.id, error, alert])
 
+
+    const decreaseStock = () => {
+
+    }
+
+    const increaseStock = () => {
+        const count = document.querySelector('.count')
+        if (count.valueAsNumber >= product.stock) return
+        const qtn = count.valueAsNumber + 1
+        setQuantity(qtn)
+    }
     return (
         <>
             {loading ? <Loader /> : (
@@ -53,11 +64,11 @@ export const ProductDetails = ({ match }) => {
 
                             <p id="product_price">${product.price}</p>
                             <div className="stockCounter d-inline">
-                                <span className="btn btn-danger minus" >-</span>
+                                <span className="btn btn-danger minus" onClick={decreaseStock}>-</span>
 
                                 <input type="number" className="form-control count d-inline" readOnly />
 
-                                <span className="btn btn-primary plus" >+</span>
+                                <span className="btn btn-primary plus" onClick={increaseStock} >+</span>
                             </div>
                             <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock === 0} >Add to Cart</button>
 
