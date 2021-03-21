@@ -6,6 +6,7 @@ import { Loader } from '../../layouts/Loader'
 import { MetaData } from '../../layouts/MetaData'
 import { Carousel } from 'react-bootstrap'
 import { clearErrors } from '../../../redux/products/product-actions'
+import { addItemToCart } from '../../../redux/cart/cart-actions'
 
 
 export const ProductDetails = ({ match }) => {
@@ -38,6 +39,12 @@ export const ProductDetails = ({ match }) => {
         const qtn = count.valueAsNumber + 1
         setQuantity(qtn)
     }
+
+    const addToCart = () => {
+        dispatch(addItemToCart(match.params.id, quantity))
+
+    }
+
     return (
         <>
             {loading ? <Loader /> : (
@@ -74,7 +81,7 @@ export const ProductDetails = ({ match }) => {
 
                                 <span className="btn btn-primary plus" onClick={increaseStock} >+</span>
                             </div>
-                            <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock === 0} >Add to Cart</button>
+                            <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock === 0} onClick={addToCart} >Add to Cart</button>
 
                             <hr />
 
