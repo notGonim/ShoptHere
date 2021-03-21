@@ -25,6 +25,10 @@ export const ProductDetails = ({ match }) => {
 
 
     const decreaseStock = () => {
+        const count = document.querySelector('.count')
+        if (count.valueAsNumber <= 1) return
+        const qtn = count.valueAsNumber - 1
+        setQuantity(qtn)
 
     }
 
