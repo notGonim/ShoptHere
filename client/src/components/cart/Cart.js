@@ -10,6 +10,26 @@ export const Cart = ({ history }) => {
     const dispatch = useDispatch()
     const { cartItems } = useSelector(state => state.cart)
 
+
+
+
+    const decreaseStock = () => {
+        const count = document.querySelector('.count')
+        if (count.valueAsNumber <= 1) return
+        const qtn = count.valueAsNumber - 1
+        setQuantity(qtn)
+
+    }
+
+    const increaseStock = () => {
+        const count = document.querySelector('.count')
+        if (count.valueAsNumber >= product.stock) return
+        const qtn = count.valueAsNumber + 1
+        setQuantity(qtn)
+    }
+
+
+
     return (
         <>
             {cartItems.length === 0 ? <h2 className="mt-5">Your Cart is Empty</h2> : (
