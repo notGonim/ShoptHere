@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Link } from 'react-router-dom'
-import { addItemToCart } from '../../redux/cart/cart-actions'
+import { addItemToCart, removeItemFromCart } from '../../redux/cart/cart-actions'
 
 
 
@@ -23,8 +23,8 @@ export const Cart = ({ history }) => {
 
 
     }
-    const removeCartItemHandler = () => {
-
+    const removeCartItemHandler = (id) => {
+        dispatch(removeItemFromCart(id))
     }
     const checkoutHandler = () => {
 
