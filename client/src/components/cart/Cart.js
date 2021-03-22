@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Link } from 'react-router-dom'
@@ -12,8 +12,6 @@ export const Cart = ({ history }) => {
     const { cartItems } = useSelector(state => state.cart)
 
 
-
-
     const decreaseStock = (id, quantity) => {
         const newQty = quantity - 1;
 
@@ -23,10 +21,9 @@ export const Cart = ({ history }) => {
 
 
     }
-    const removeCartItemHandler = (id) => {
-        dispatch(removeItemFromCart(id))
-    }
+
     const checkoutHandler = () => {
+        history.push('/login?redirect=shipping')
 
     }
 
@@ -40,10 +37,13 @@ export const Cart = ({ history }) => {
         dispatch(addItemToCart(id, newQty))
     }
 
-
+    const removeCartItemHandler = (id) => {
+        dispatch(removeItemFromCart(id))
+    }
 
     return (
         <>
+
             {cartItems.length === 0 ? <h2 className="mt-5">Your Cart is Empty</h2> : (
                 <>
                     <h2 className="mt-5">Your Cart: <b>{cartItems.length} items</b></h2>
@@ -80,8 +80,9 @@ export const Cart = ({ history }) => {
                                                 </div>
                                             </div>
 
-                                            <div className="col-4 col-lg-1 mt-4 mt-lg-0">
-                                                <i id="delete_cart_item" className="fa fa-trash btn btn-danger" onClick={() => removeCartItemHandler(item.product)} ></i>
+                                            <div className="col-4 col-lg-1 mt-4 mt-lg-0 "  >
+                                                <i id="delete_cart_item" className="bi bi-trash btn btn-danger" 
+                                                onClick={() => removeCartItemHandler(item.product)}  > Remove</i>
                                             </div>
 
                                         </div>
@@ -106,6 +107,7 @@ export const Cart = ({ history }) => {
                     </div>
                 </>
             )}
+
         </>
     )
 }

@@ -6,6 +6,7 @@ const INITIAL_STATE = {
 const CartReducer = (state = INITIAL_STATE, action) => {
 
     switch (action.type) {
+
         case 'ADD_TO_CART':
             const item = action.payload
             const isItemExist = state.cartItems.find(i => i.product === item.product)
@@ -21,7 +22,7 @@ const CartReducer = (state = INITIAL_STATE, action) => {
                 };
             }
 
-        case 'REMOVE_ITEM_FROM_CART':
+        case 'REMOVE_FROM_CART':
             return {
                 ...state,
                 cartItems: state.cartItems.filter(i => i.product !== action.payload)

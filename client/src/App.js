@@ -29,9 +29,11 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/search/:keyword" component={Home} />
           <Route path="/product/:id" exact component={ProductDetails} />
+          <Route path="/cart" exact component={Cart} />
+
+
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
-          <Route path="/cart" exact component={Cart} />
 
           <ProtectedRoutes path="/me" exact component={Profile} />
           <ProtectedRoutes path="/me/update" exact component={UpdateProfile} />
