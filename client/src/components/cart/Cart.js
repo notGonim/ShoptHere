@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Link } from 'react-router-dom'
+import { addItemToCart } from '../../redux/cart/cart-actions'
 
 
 
@@ -21,11 +22,14 @@ export const Cart = ({ history }) => {
 
     }
 
-    const increaseStock = () => {
-        const count = document.querySelector('.count')
-        if (count.valueAsNumber >= product.stock) return
-        const qtn = count.valueAsNumber + 1
-        setQuantity(qtn)
+    const increaseStock = (id, quantity, stock) => {
+
+        const newQty = quantity + 1
+
+        if (newQty >= stock) return
+
+
+        dispatch(addItemToCart(id, newQty))
     }
 
 
@@ -60,11 +64,11 @@ export const Cart = ({ history }) => {
 
                                             <div className="col-4 col-lg-3 mt-4 mt-lg-0">
                                                 <div className="stockCounter d-inline">
-                                                    <span className="btn btn-danger minus" onClick={() => decreaseQty(item.product, item.quantity)}>-</span>
+                                                    <span className="btn btn-danger minus" onClick={() => decreaseStock(item.product, item.quantity)}>-</span>
 
                                                     <input type="number" className="form-control count d-inline" value={item.quantity} readOnly />
 
-                                                    <span className="btn btn-primary plus" onClick={() => increaseQty(item.product, item.quantity, item.stock)}>+</span>
+                                                    <span className="btn btn-primary plus" onClick={() => increaseStock(item.product, item.quantity, item.stock)}>+</span>
                                                 </div>
                                             </div>
 
