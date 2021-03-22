@@ -14,11 +14,13 @@ export const Cart = ({ history }) => {
 
 
 
-    const decreaseStock = () => {
-        const count = document.querySelector('.count')
-        if (count.valueAsNumber <= 1) return
-        const qtn = count.valueAsNumber - 1
-        setQuantity(qtn)
+    const decreaseStock = (id, quantity) => {
+        const newQty = quantity - 1;
+
+        if (newQty <= 0) return;
+
+        dispatch(addItemToCart(id, newQty))
+
 
     }
 
