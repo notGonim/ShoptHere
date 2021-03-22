@@ -23,6 +23,12 @@ export const Cart = ({ history }) => {
 
 
     }
+    const removeCartItemHandler = () => {
+
+    }
+    const checkoutHandler = () => {
+
+    }
 
     const increaseStock = (id, quantity, stock) => {
 
