@@ -27,11 +27,11 @@ function App() {
 
     dispatch(loadUser())
 
-    const getStripeApiKey = async () => {
+    async function getStripeApiKey() {
       const { data } = await axios.get('/api/stripeapi')
       setStripeApiKey(data.stripeApiKey)
     }
-
+    getStripeApiKey()
 
   })
   return (
