@@ -14,6 +14,7 @@ import { UpdateProfile } from "./components/user/UpdateProfile";
 import { UpdatePassword } from "./components/user/UpdatePassword";
 import { Cart } from "./components/cart/Cart";
 import { Shipping } from "./components/cart/Shipping";
+import { ConfirmOrder } from "./components/cart/ConfirmOrder";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/product/:id" exact component={ProductDetails} />
           <Route path="/cart" exact component={Cart} />
           <ProtectedRoutes path="/shipping" exact component={Shipping} />
+          <ProtectedRoutes path="/order/confirm" exact component={ConfirmOrder} />
 
 
           <Route path="/login" exact component={Login} />

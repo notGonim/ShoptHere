@@ -1,21 +1,23 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { CheckoutStep } from './CheckoutStep'
 
 export const ConfirmOrder = () => {
 
-    const { cartItems, shippingInfor } = useSelector(state => state.cart)
+    const { cartItems, shippingInfo } = useSelector(state => state.cart)
     const { user } = useSelector(state => state.auth)
 
 
     //calculating order prices 
     const itemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
-    const shippingPrice = itemPrice > 200 ? 0 : 25
+    const shippingPrice = itemsPrice > 200 ? 0 : 25
     const taxPrice = Number((0.05 * itemsPrice).toFixed(2))
     const totalPrice = (itemsPrice + shippingPrice + taxPrice).toFixed(2)
 
     return (
         <>
-            <CheckoutSteps shipping confirmOrder />
+            <CheckoutStep Shipping confirmOrder />
 
             <div className="row d-flex justify-content-between">
                 <div className="col-12 col-lg-8 mt-5 order-confirm">
@@ -29,7 +31,7 @@ export const ConfirmOrder = () => {
                     <h4 className="mt-4">Your Cart Items:</h4>
 
                     {cartItems.map(item => (
-                        <Fragment>
+                        <>
                             <hr />
                             <div className="cart-item my-1" key={item.product}>
                                 <div className="row">
@@ -49,7 +51,7 @@ export const ConfirmOrder = () => {
                                 </div>
                             </div>
                             <hr />
-                        </Fragment>
+                        </>
                     ))}
 
 
@@ -69,7 +71,7 @@ export const ConfirmOrder = () => {
                         <p>Total: <span className="order-summary-values">${totalPrice}</span></p>
 
                         <hr />
-                        <button id="checkout_btn" className="btn btn-primary btn-block" onClick={processToPayment}>Proceed to Payment</button>
+                        <button id="checkout_btn" className="btn btn-primary btn-block" >Proceed to Payment</button>
                     </div>
                 </div>
             </div>
