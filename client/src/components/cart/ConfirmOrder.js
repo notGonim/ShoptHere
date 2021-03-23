@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { CheckoutStep } from './CheckoutStep'
 
-export const ConfirmOrder = () => {
+export const ConfirmOrder = ({ history }) => {
 
     const { cartItems, shippingInfo } = useSelector(state => state.cart)
     const { user } = useSelector(state => state.auth)
@@ -14,6 +14,21 @@ export const ConfirmOrder = () => {
     const shippingPrice = itemsPrice > 200 ? 0 : 25
     const taxPrice = Number((0.05 * itemsPrice).toFixed(2))
     const totalPrice = (itemsPrice + shippingPrice + taxPrice).toFixed(2)
+
+
+    const processToPayment = () => {
+
+        const data = {
+            itemsPrice: itemsPrice.toFixed(2),
+            shippingPrice,
+            taxPrice,
+            totalPrice
+        }
+
+        sessionStorage.setItem('orderInfo', JSON.stringify(data))
+        history.push('/payment')
+    }
+
 
     return (
         <>
@@ -71,7 +86,7 @@ export const ConfirmOrder = () => {
                         <p>Total: <span className="order-summary-values">${totalPrice}</span></p>
 
                         <hr />
-                        <button id="checkout_btn" className="btn btn-primary btn-block" >Proceed to Payment</button>
+                        <button id="checkout_btn" className="btn btn-primary btn-block" onClick={processToPayment}>Proceed to Payment</button>
                     </div>
                 </div>
             </div>
