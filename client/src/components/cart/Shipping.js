@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { saveShippingInfo } from '../../redux/cart/cart-actions'
 import { countries } from 'countries-list'
+import { CheckoutStep } from './CheckoutStep'
 
 
 export const Shipping = ({ history }) => {
@@ -30,7 +31,7 @@ export const Shipping = ({ history }) => {
     return (
 
         <>
-
+            <CheckoutStep Shipping />
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
                     <form className="shadow-lg" onSubmit={submitHandler}>

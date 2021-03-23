@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const CheckoutStep = ({ shipping, confirmOrder, payment }) => {
+export const CheckoutStep = ({ Shipping, confirmOrder, payment }) => {
     return (
         <div className="checkout-progress d-flex justify-content-center mt-5">
 
-            {shipping ? <Link to='shippping' className="float-right">
+            {Shipping ? <Link to='shippping' className="float-right">
                 <div className="triangle2-active"></div>
                 <div className="step active-step">Shipping</div>
                 <div className="triangle-active"></div>
