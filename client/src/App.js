@@ -33,7 +33,7 @@ function App() {
           <Route path="/product/:id" exact component={ProductDetails} />
           <Route path="/cart" exact component={Cart} />
           <ProtectedRoutes path="/shipping" exact component={Shipping} />
-          <ProtectedRoutes path="/order/confirm" exact component={ConfirmOrder} />
+          <Route path="/order/confirm" exact component={ConfirmOrder} />
 
 
           <Route path="/login" exact component={Login} />
