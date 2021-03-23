@@ -1,10 +1,27 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { saveShippingInfo } from '../../redux/cart/cart-actions'
 
-export const Shipping = () => {
+export const Shipping = ({ history }) => {
 
 
     const { shippingInfo } = useSelector(state => state.cart)
+    const [address, setAddress] = useState(shippingInfo.address)
+    const [postalCode, setPostalCode] = useState(shippingInfo.postalCode)
+    const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo)
+    const [country, setCountry] = useState(shippingInfo.country)
+    const [city, setCity] = useState(shippingInfo.city)
+
+    const dispatch = useDispatch()
+
+
+    const submitHandler = () => {
+
+        e.preventDefault()
+        dispatch(saveShippingInfo({ address, city, phoneNo, postalCode, country }))
+        history.push('/confirm')
+    }
+
 
     return (
 
