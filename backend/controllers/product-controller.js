@@ -21,7 +21,7 @@ export const newProduct = asyncError(async (req, res, next) => {
 export const getProducts = asyncError(async (req, res, next) => {
 
     //change resPerPages to 8 once you added more products
-    const resPerPage = 1
+    const resPerPage = 8
     const productCount = await Product.countDocuments()
     const apiFeatures = new ApiFeatures(Product.find(), req.query).search().filter()
     let products = await apiFeatures.query

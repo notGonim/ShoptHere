@@ -11,6 +11,6 @@ export const ProductRouter = express.Router()
 
 ProductRouter.get('/products', getProducts)
 ProductRouter.get('/product/:id', getProductById)
-ProductRouter.post('/admin/product/new', isUserAuthenticated, authorizeRoles('admin'), newProduct)
+ProductRouter.post('/admin/product/new', isUserAuthenticated, newProduct)
 ProductRouter.put('/admin/product/:id', isUserAuthenticated, authorizeRoles('admin'), updateProductById)
 ProductRouter.delete('/admin/product/:id', isUserAuthenticated, authorizeRoles('admin'), deleteProductById)
