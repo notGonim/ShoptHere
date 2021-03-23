@@ -5,6 +5,7 @@ import { UserRouter } from './routes/user-route.js'
 import cookieParser from 'cookie-parser'
 import { OrderRouter } from './routes/order-route.js'
 import bodyParser from 'body-parser'
+import { PaymentRouter } from './routes/payment-route.js'
 export const app = express()
 
 
@@ -20,6 +21,7 @@ app.use(cookieParser())
 app.use('/api', ProductRouter)
 app.use('/api', UserRouter)
 app.use('/api', OrderRouter)
+app.use('/api',PaymentRouter)
 
 
 

@@ -1,9 +1,9 @@
 import { asyncError } from "../middleware/catchAsyncErrors.js"
-import stripe from 'stripe'
+import Stripe from 'stripe'
 
 
 
-const stripe = ('stripe')(process.env.STRIPE_SECRETE_KEY)
+const stripe = new Stripe(process.env.STRIPE_SECRETE_KEY)
 
 
 export const processPayment = asyncError(async (req, res, next) => {
