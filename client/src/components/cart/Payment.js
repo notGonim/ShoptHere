@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
+import { CheckoutStep } from './CheckoutStep'
 
 const options = {
     style: {
@@ -22,11 +23,16 @@ export const Payment = ({ history }) => {
 
     const { user } = useSelector(state => state.auth)
     const { cartItems, shippingInfo } = useSelector(state => state.cart)
+    const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'));
 
 
     useEffect(() => {
 
     })
+
+    const submitHandler = () => {
+
+    }
 
 
     return (
