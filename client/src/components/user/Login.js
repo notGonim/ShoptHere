@@ -8,7 +8,7 @@ import { Loader } from '../layouts/Loader'
 
 
 
-export const Login = ({ history }) => {
+export const Login = ({ history ,location }) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -16,10 +16,12 @@ export const Login = ({ history }) => {
     const { isAuthenticated, error, loading } = useSelector(state => state.auth)
 
 
+    const redirect = location.search ? location.search.split('=')[1] : '/'
+
     useEffect(() => {
 
         if (isAuthenticated) {
-            history.push('/')
+            history.push(redirect)
         }
 
         if (error) {

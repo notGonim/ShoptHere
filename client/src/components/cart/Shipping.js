@@ -19,7 +19,7 @@ export const Shipping = ({ history }) => {
     const dispatch = useDispatch()
 
 
-    const submitHandler = () => {
+    const submitHandler = (e) => {
 
         e.preventDefault()
         dispatch(saveShippingInfo({ address, city, phoneNo, postalCode, country }))
