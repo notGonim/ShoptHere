@@ -7,6 +7,12 @@ export const ConfirmOrder = () => {
     const { user } = useSelector(state => state.auth)
 
 
+    //calculating order prices 
+    const itemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
+    const shippingPrice = itemPrice > 200 ? 0 : 25
+    const taxPrice = Number((0.05 * itemsPrice).toFixed(2))
+    const totalPrice = (itemsPrice + shippingPrice + taxPrice).toFixed(2)
+
     return (
         <>
             <CheckoutSteps shipping confirmOrder />
