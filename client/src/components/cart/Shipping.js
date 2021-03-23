@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { saveShippingInfo } from '../../redux/cart/cart-actions'
+import { countries } from 'countries-list'
+
 
 export const Shipping = ({ history }) => {
 
@@ -11,6 +13,8 @@ export const Shipping = ({ history }) => {
     const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo)
     const [country, setCountry] = useState(shippingInfo.country)
     const [city, setCity] = useState(shippingInfo.city)
+    const countriesList = Object.values(countries)
+
 
     const dispatch = useDispatch()
 

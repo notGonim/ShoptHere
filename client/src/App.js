@@ -13,6 +13,7 @@ import { ProtectedRoutes } from "./components/routes/ProtectedRoutes";
 import { UpdateProfile } from "./components/user/UpdateProfile";
 import { UpdatePassword } from "./components/user/UpdatePassword";
 import { Cart } from "./components/cart/Cart";
+import { Shipping } from "./components/cart/Shipping";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/search/:keyword" component={Home} />
           <Route path="/product/:id" exact component={ProductDetails} />
           <Route path="/cart" exact component={Cart} />
+          <ProtectedRoutes path="/shipping" exact component={Shipping} />
 
 
           <Route path="/login" exact component={Login} />
