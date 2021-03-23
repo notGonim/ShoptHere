@@ -25,15 +25,32 @@ export const Payment = ({ history }) => {
     const { cartItems, shippingInfo } = useSelector(state => state.cart)
     const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'));
 
+    const order = {
+        orderItems: cartItems,
+        shippingInfo
+    }
+
+    if (orderInfo) {
+        order.itemsPrice = orderInfo.itemsPrice
+        order.shippingPrice = orderInfo.shippingPrice
+        order.taxPrice = orderInfo.taxPrice
+        order.totalPrice = orderInfo.totalPrice
+    }
+
+    const paymentData = {
+        amount: Math.round(orderInfo.totalPrice * 100)
+    }
 
     useEffect(() => {
 
     })
 
-    const submitHandler = () => {
 
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+        history.push('/done')
     }
-
 
     return (
         <>

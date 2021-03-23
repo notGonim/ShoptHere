@@ -19,6 +19,7 @@ import axios from 'axios'
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { Payment } from "./components/cart/Payment";
+import { OrderCheck } from "./components/cart/OrderCheck";
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
             </Elements>
 
           }
+          <Route path="/done" exact component={OrderCheck} />
 
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
