@@ -28,11 +28,7 @@ export const processPayment = asyncError(async (req, res, next) => {
 export const sendStripeAPI = asyncError(async (req, res, next) => {
 
     res.status(200).json({
-
-        stripeApiKey: process.envSTRIPE_API_KEY,
-        
-
-
+        stripeApiKey: process.env.STRIPE_API_KEY,
     })
 
 

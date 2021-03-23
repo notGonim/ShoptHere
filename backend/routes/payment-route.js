@@ -11,7 +11,7 @@ export const PaymentRouter = express.Router()
 
 
 PaymentRouter.post('/payment/process', isUserAuthenticated, processPayment)
-PaymentRouter.get('/stripeapi', isUserAuthenticated, sendStripeAPI)
+PaymentRouter.get('/stripe', isUserAuthenticated, sendStripeAPI)
 
 
 
