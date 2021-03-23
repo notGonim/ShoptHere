@@ -1,5 +1,7 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
+import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
 
 const options = {
     style: {
@@ -13,6 +15,20 @@ const options = {
 }
 
 export const Payment = ({ history }) => {
+
+    const stripe = useStripe()
+    const elements = useElements()
+    const dispatch = useDispatch()
+
+    const { user } = useSelector(state => state.auth)
+    const { cartItems, shippingInfo } = useSelector(state => state.cart)
+
+
+    useEffect(() => {
+
+    })
+
+
     return (
         <>
 
