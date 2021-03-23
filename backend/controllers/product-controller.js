@@ -99,13 +99,13 @@ export const createProductReview = asyncError(async (req, res, next) => {
     const review = {
         user: req.user.id,
         name: req.user.name,
-        rating: Number(rating),
+        ratings: Number(rating),
         comment
     }
 
     const product = await Product.findById(productId)
 
-
+   
     const isReviewed = product.reviews.find(
         r => r.user.toString() === req.user._id.toString()
     )
