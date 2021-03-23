@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { ProductDetails } from "./components/product/ProductDetails/ProductDetails";
 import { Login } from "./components/user/Login";
 import { Register } from "./components/user/Register";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { loadUser } from "./redux/user/user-actions";
 import { Profile } from "./components/user/Profile";
@@ -15,13 +15,24 @@ import { UpdatePassword } from "./components/user/UpdatePassword";
 import { Cart } from "./components/cart/Cart";
 import { Shipping } from "./components/cart/Shipping";
 import { ConfirmOrder } from "./components/cart/ConfirmOrder";
-
+import axios from 'axios'
 
 function App() {
 
+
+  const [stripeApiKey, setStripeApiKey] = useState('')
+
   const dispatch = useDispatch()
   useEffect(() => {
+
     dispatch(loadUser())
+
+    const getStripeApiKey = async () => {
+      const { data } = await axios.get('/api/stripeapi')
+      setStripeApiKey(data.stripeApiKey)
+    }
+
+
   })
   return (
     <Router >
@@ -33,7 +44,7 @@ function App() {
           <Route path="/product/:id" exact component={ProductDetails} />
           <Route path="/cart" exact component={Cart} />
           <ProtectedRoutes path="/shipping" exact component={Shipping} />
-          <Route path="/order/confirm" exact component={ConfirmOrder} />
+          <ProtectedRoutes path="/order/confirm" exact component={ConfirmOrder} />
 
 
           <Route path="/login" exact component={Login} />
