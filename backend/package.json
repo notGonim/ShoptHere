@@ -22,6 +22,7 @@
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.15",
     "nodemailer": "^6.5.0",
+    "stripe": "^8.139.0",
     "validator": "^13.5.2"
   },
   "devDependencies": {
