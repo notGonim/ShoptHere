@@ -1,6 +1,7 @@
 
 const INITIAL_STATE = {
-    cartItems: []
+    cartItems: [],
+    shippingInfo: {}
 }
 
 const CartReducer = (state = INITIAL_STATE, action) => {
@@ -31,7 +32,7 @@ const CartReducer = (state = INITIAL_STATE, action) => {
         case 'SAVE_SHIPPING_INFO':
             return {
                 ...state,
-                shippingInfo:action.payload
+                shippingInfo: action.payload
             }
 
         default:
