@@ -36,5 +36,7 @@ npm start
 ```
 
 ### TODOs
+- ratings & reviews system
 
+- Admin Dashboard to manage products, orders, reviews, users
 
