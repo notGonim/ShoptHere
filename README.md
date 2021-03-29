@@ -40,3 +40,4 @@ npm start
 
 - Admin Dashboard to manage products, orders, reviews, users
 
+- Deployment
