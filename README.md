@@ -21,3 +21,17 @@ cd client
 npm start
 ```
 
+### Install Dependencies (Backend)
+
+```
+cd backend
+npm i
+```
+
+### Run Backend
+
+```
+cd backend
+npm start
+```
+
